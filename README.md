@@ -25,6 +25,7 @@ https://docs.google.com/spreadsheets/d/1X7kz2HAXU6ZEHRJVv6AL4jnzaCQ5GaVKAj9_qxSI
 # ワイヤーフレーム
 https://cacoo.com/diagrams/8l4O9p4Zw413mwNR/6091C
 # ER図  
-<img width="990" alt="スクリーンショット 2022-06-10 14 04 44" src="https://user-images.githubusercontent.com/100675679/173221883-adbf79fb-c33c-4a22-9048-6792a285606a.png">
+<img width="1003" alt="スクリーンショット 2022-06-12 16 09 20" src="https://user-images.githubusercontent.com/100675679/173235893-26f12c22-79fe-4870-a6a6-bf480cb6fb2f.png">  
+
 # 画面遷移図
 <img width="990" alt="スクリーンショット 2022-06-10 14 04 44" src="https://user-images.githubusercontent.com/100675679/172994132-bd7b858d-44d1-44fc-8a8e-b4321389c09d.png">
