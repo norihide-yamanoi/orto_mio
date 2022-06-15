@@ -1,0 +1,28 @@
+<h3>以下の内容で、送信する。</h3>
+
+<%= form_with(model: @event, url: events_path, local: true) do |form| %>
+  <%= form.hidden_field :name %>
+  <%= form.hidden_field :detail %>
+  <%= form.hidden_field :address %>
+  <%= form.hidden_field :crop %>
+  <%= form.hidden_field :remork %>
+  <%= form.hidden_field :planting %>
+  <%= form.hidden_field :harvest %>
+  <%= form.hidden_field :day %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.hidden_field :latitude %>
+  <%= form.hidden_field :longitude %>
+
+  <p>名前:<%= @event.name %></p>
+  <p>開催日:<%= @event.day %></p>
+  <p>住所:<%= @event.address %></p>
+  <p>詳細:<%= @event.detail %></p>
+  <p>植え付け月:<%= @event.planting %></p>
+  <p>収穫月:<%= @event.harvest %></p>
+  <p>作物:<%= @event.crop %></p>
+  <p>備考:<%= @event.remork %></p>
+  <%= image_tag(@event.image.url) if @event.image && @event.image.url %>
+
+  <%= form.submit  "登録する" %>
+  <%= form.submit "戻る", name: 'back' %>
+<% end %>

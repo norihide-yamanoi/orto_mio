@@ -1,0 +1,23 @@
+<h1>イベント一覧</h1>
+
+<p><%= notice %></p>
+
+<table>
+  <tr>
+    <th>名前</th>
+    <th>詳細</th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.name %></td>
+    <td><%= event.detail %></td>
+
+     <td><%= link_to '内容を確認する',event_path(event.id) %></td>
+     <td><%= link_to "イベントを編集する", edit_event_path(event.id) %></td>
+     <td><%= link_to 'イベントを削除する', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to '新しくイベントを登録する', new_event_path %>
