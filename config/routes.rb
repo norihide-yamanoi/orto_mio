@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :tags
   root to: 'events#index'
+
+  resources :tags
 
   resources :events do
     collection do
