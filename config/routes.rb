@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   root to: 'events#index'
 
   resources :tags
+  resources :favorites
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
   get "users/show" => "users#show"
-  
+
   resources :events do
     collection do
       post :confirm
