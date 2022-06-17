@@ -6,13 +6,17 @@
   <tr>
     <th>名前</th>
     <th>詳細</th>
+    <th>植え付け</th>
+    <th>収穫</th>
+
   </tr>
 
 <% @events.each do |event| %>
   <tr>
     <td><%= event.name %></td>
     <td><%= event.detail %></td>
-
+    <td><%= event.planting %></td>
+    <td><%= event.harvest %></td>
      <td><%= link_to '内容を確認する',event_path(event.id) %></td>
      <td><%= link_to "イベントを編集する", edit_event_path(event.id) %></td>
      <td><%= link_to 'イベントを削除する', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>

@@ -29,11 +29,11 @@
   </div>
   <div class="event_planting">
     <%= form.label :planting %>
-    <%= form.select :planting, Event.months.keys.to_a, { include_blank:'未選択可能'} %>
+    <%= form.select :planting, Event.plantings.keys.to_a, { include_blank:'未選択可能'} %>
   </div>
   <div class="event_harvest">
     <%= form.label :harvest %>
-    <%= form.select :harvest, Event.months.keys.to_a%>
+    <%= form.select :harvest, Event.harvests.keys.to_a, { include_blank:'未選択可能'} %>
   </div>
   <div class="event_crop">
     <%= form.label :crop %>
