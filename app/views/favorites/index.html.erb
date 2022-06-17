@@ -1,0 +1,19 @@
+<h1>お気に入りイベント一覧</h1>
+
+<table>
+  <tr>
+    <th>名前</th>
+    <th>内容</th>
+    <th>開催者</th>
+  </tr>
+
+<% @favorites.each do |favorite| %>
+  <tr>
+    <td><%= favorite.event.name%></td>
+    <td><%= favorite.event.detail %></td>
+    <td><%= favorite.event.user.name %></td>
+  </tr>
+<% end %>
+</table>
+
+ <%= link_to "ユーザー画面にもどる", users_show_path(current_user.id) %>

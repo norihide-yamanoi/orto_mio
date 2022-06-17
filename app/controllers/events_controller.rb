@@ -10,7 +10,7 @@ def new
 end
 
 def create
-  @event = Event.new(event_params)
+  @event = current_user.events.build(event_params)
   if params[:back]
     render :new
   else
@@ -23,6 +23,7 @@ def create
 end
 
 def show
+  @favorite = current_user.favorites.find_by(event_id: @event.id)
 end
 
 def edit
@@ -42,7 +43,7 @@ def destroy
 end
 
 def confirm
-  @event = Event.new(event_params)
+  @event = current_user.events.build(event_params)
   render :new if @event.invalid?
 end
 

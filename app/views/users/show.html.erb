@@ -5,6 +5,8 @@
   <p>登録email：<%= current_user.email %></p>
   <p>アイコン：<%= image_tag current_user.icon.url %></p>
   <br>
+  <%= link_to 'お気に入り一覧', favorites_path %>
+  <br>
   アカウントを編集しますか？
   <%= link_to "はい", edit_user_registration_path %>
   <br>

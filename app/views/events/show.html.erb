@@ -1,5 +1,13 @@
 <h1>イベント内容画面</h1>
 
+<% unless @event.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りする', favorites_path(event_id: @event.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
+
 <p>名前:<%= @event.name %></p>
 <p>開催日:<%= @event.day %></p>
 <p>住所:<%= @event.address %></p>
@@ -8,6 +16,7 @@
 <p>収穫月:<%= @event.harvest %></p>
 <p>作物:<%= @event.crop %></p>
 <p>備考:<%= @event.remork %></p>
+<p>開催者:<%= @event.user.name %></p>
 <p>イメージ: <%= image_tag @event.image.url %></p>
 
 
