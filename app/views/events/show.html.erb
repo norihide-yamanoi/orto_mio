@@ -15,6 +15,9 @@
 <p>植え付け月:<%= @event.planting %></p>
 <p>収穫月:<%= @event.harvest %></p>
 <p>作物:<%= @event.crop %></p>
+<p>その他:<% @event.tags.each do |tag| %>
+              <%= tag.name %>
+            <% end %></p>
 <p>備考:<%= @event.remork %></p>
 <p>開催者:<%= @event.user.name %></p>
 <p>イメージ: <%= image_tag @event.image.url %></p>

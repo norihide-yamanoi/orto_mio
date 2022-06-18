@@ -39,6 +39,9 @@
     <%= form.label :crop %>
     <%= form.text_field :crop %>
   </div>
+  <div class="event_tag">
+    <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
+  </div>
   <div class="event_remork">
     <%= form.label :remork %>
     <%= form.text_area :remork %>
