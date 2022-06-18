@@ -52,7 +52,7 @@ private
 
 def event_params
   params.require(:event).permit(:name, :address, :latitude, :longitude, :day, :remork,
-                                :detail, :planting, :harvest, :crop, :image, :image_cache)
+                                :detail, :planting, :harvest, :crop, :image, :image_cache, { tag_ids: [] })
 end
 
 def set_event
