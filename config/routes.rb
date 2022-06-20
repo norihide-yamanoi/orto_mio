@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get  'inquiry' => 'inquiry#index'
   post 'inquiry/confirm' => 'inquiry#confirm'
-  post 'inquiry/thanks' => 'inquiry#thanks'    
+  post 'inquiry/thanks' => 'inquiry#thanks'
 
   resources :tags
   resources :favorites
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :blogs do
+    resources :comments, only: [:edit, :update, :create, :destroy]
     collection do
       post :confirm
     end

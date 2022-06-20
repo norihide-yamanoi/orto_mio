@@ -5,5 +5,27 @@
 <p>作者:<%= @blog.user.name %></p>
 <p>写真: <%= image_tag @blog.photo.url %></p>
 
+<h3>コメント一覧</h3>
+<% @comments.each do |c| %>
+  <%= c.content %>
+  <% if user_signed_in? %>  #追加
+    <% if current_user.id == c.user_id %>
+      <%= link_to "編集", edit_blog_comment_path(@blog, c) %>
+      <%= link_to "削除", blog_comment_path(@blog, c), method: :delete %>
+    <% elsif current_user.id == @blog.user_id then %>
+      <%= link_to "削除", blog_comment_path(@blog, c), method: :delete %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= form_with model: [@blog, @comment] do |f| %>
+    <%= f.text_area :content, placeholder: "コメントする" %>
+    <%= f.submit "登録" %>
+  <% end %>
+<% end %>
+
+
+
 
 <%= link_to "一覧画面にもどる", blogs_path %>
