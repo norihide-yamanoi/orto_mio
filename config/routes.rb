@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'top/index'
   root to: 'top#index'
 
+  get  'inquiry' => 'inquiry#index'
+  post 'inquiry/confirm' => 'inquiry#confirm'
+  post 'inquiry/thanks' => 'inquiry#thanks'    
+
   resources :tags
   resources :favorites
 
