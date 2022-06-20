@@ -4,4 +4,5 @@ class Blog < ApplicationRecord
   mount_uploader :photo, ImageUploader
 
   belongs_to :user
+  has_many :comments, dependent: :destroy
 end
