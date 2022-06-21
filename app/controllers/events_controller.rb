@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :set_q
 def index
-  @events = Event.all
+  @events = @q.result
 end
 
 def new
@@ -47,6 +48,10 @@ def confirm
   render :new if @event.invalid?
 end
 
+def search
+  @results = @q.result
+end
+
 
 private
 
@@ -59,4 +64,7 @@ def set_event
   @event = Event.find(params[:id])
 end
 
+def set_q
+  @q = Event.ransack(params[:q])
+end
 end
