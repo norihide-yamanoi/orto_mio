@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :events do
     collection do
       post :confirm
+      get 'search'
     end
   end
 

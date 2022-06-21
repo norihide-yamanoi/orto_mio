@@ -1,5 +1,17 @@
 <h1>イベント一覧</h1>
 
+
+<%= search_form_for @q do |f| %>
+  <%= f.search_field :name_cont, placeholder: 'イベント名'%>
+  <%= f.search_field :detail_cont, placeholder: '内容'%>
+  <%= f.search_field :address_cont, placeholder: '住所'%>
+  <%= f.date_field :day_gteq%>
+   <span>~</span>
+  <%= f.date_field :day_lteq%>
+   <br>
+  <%= f.submit '検索' %>
+<% end %>
+
 <table>
   <tr>
     <th>名前</th>
