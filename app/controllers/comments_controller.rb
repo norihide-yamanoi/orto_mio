@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @blog = Blog.find(params[:blog_id])
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
-      redirect_to blog_path(@blog), notice: "コメントを編集しました"
+      redirect_to event_blog_path(@blog), notice: "コメントを編集しました"
     else
       flash.now[:danger] = "編集に失敗しました"
       render 'edit'

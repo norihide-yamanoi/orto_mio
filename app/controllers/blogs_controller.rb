@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
       render :new
     else
       if @blog.save
-        redirect_to blogs_path, notice: "ブログを投稿しました‼︎"
+        redirect_to event_blogs_path, notice: "ブログを投稿しました‼︎"
       else
         render :new
       end
@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @blog.comments.includes(:user)
+    @comments = @blog.comments.includes(:event,:user)
   end
 
   def edit
@@ -32,7 +32,7 @@ class BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to blogs_path, notice: "ブログを編集しました！"
+      redirect_to event_blogs_path, notice: "ブログを編集しました！"
     else
       render :edit
     end
@@ -40,7 +40,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-    redirect_to blogs_path, notice:"ブログを削除しました！"
+    redirect_to event_blogs_path, notice:"ブログを削除しました！"
   end
 
   def confirm
@@ -51,7 +51,7 @@ class BlogsController < ApplicationController
   private
 
   def  blog_params
-    params.require(:blog).permit(:title, :content, :photo, :photo_cache)
+    params.require(:blog).permit(:title, :content, :photo, :photo_cache).merge(event_id: params[:event_id])
   end
 
   def set_blog

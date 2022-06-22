@@ -10,21 +10,22 @@ Rails.application.routes.draw do
 
   resources :tags
   resources :favorites
-
+  resources :blogs
   devise_for :users, controllers: { registrations: 'users/registrations' }
   get "users/show" => "users#show"
+
 
   resources :events do
     collection do
       post :confirm
       get 'search'
     end
-  end
-
-  resources :blogs do
-    resources :comments, only: [:edit, :update, :create, :destroy]
-    collection do
-      post :confirm
+    resources :blogs do
+      resources :comments, only: [:edit, :update, :create, :destroy]
+      collection do
+        post :confirm
+        get 'search'
+      end
     end
   end
 end

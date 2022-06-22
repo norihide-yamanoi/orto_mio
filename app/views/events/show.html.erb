@@ -8,7 +8,7 @@
   <% end %>
 <% end %>
 
-<%= link_to '新しくブログを登録する', new_blog_path %>
+<%= link_to 'このイベントにブログを登録する', new_event_blog_path(@event) %>
 
 <p>名前:<%= @event.name %></p>
 <p>開催日:<%= @event.day %></p>

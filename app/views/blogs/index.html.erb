@@ -13,11 +13,9 @@
     <td><%= blog.content %></td>
     <td><%= blog.photo %></td>
 
-     <td><%= link_to '内容を確認する',blog_path(blog.id) %></td>
-     <td><%= link_to "ブログを編集する", edit_blog_path(blog.id) %></td>
-     <td><%= link_to 'ブログを削除する', blog_path(blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+     <td><%= link_to '内容を確認する',event_blog_path(blog.event.id,blog.id) %></td>
+     <td><%= link_to "ブログを編集する", edit_event_blog_path(blog.event.id,blog.id) %></td>
+     <td><%= link_to 'ブログを削除する', event_blog_path(blog.event.id,blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>
 </table>
-
-<%= link_to '新しくブログを登録する', new_blog_path %>
