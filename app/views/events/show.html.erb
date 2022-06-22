@@ -9,7 +9,7 @@
 <% end %>
 
 <%= link_to 'このイベントにブログを登録する', new_event_blog_path(@event) %>
-<%= link_to 'このイベントのブログを見る', blogs_path%>
+<%= link_to 'このイベントのブログを見る', event_blogs_path(@event, select_event: :true) %>
 <p>名前:<%= @event.name %></p>
 <p>開催日:<%= @event.day %></p>
 <p>住所:<%= @event.address %></p>

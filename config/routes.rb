@@ -10,10 +10,10 @@ Rails.application.routes.draw do
 
   resources :tags
   resources :favorites
-  resources :blogs
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :users
 
+  get 'blogs/index_all'
 
   resources :events do
     collection do

@@ -2,11 +2,8 @@
 
 
 <%= search_form_for @q do |f| %>
-  <%= f.search_field :name_cont, placeholder: 'イベント名'%>
-  <%= f.search_field :detail_or_remork_cont, placeholder: '内容'%>
-  <%= f.search_field :address_cont, placeholder: '住所'%>
-  <%= f.search_field :crop_cont, placeholder: '作物'%>
-  <%= f.search_field :name_cont, placeholder: '開催者'%>
+  <%= f.search_field :detail_or_remork_or_name_or_address_or_crop_cont, placeholder: '内容'%>
+  <%# <%= f.search_field :user.name_cont, placeholder: '開催者'%> %>
   <%= f.select :planting_eq, [['１月', 1], ['２月', 2], ['３月', 3],['４月',4], ['５月', 5], ['６月', 6],['７月', 7], ['８月', 8],  ['９月', 9], ['１０月', 10],['１１月', 11], ['１２月', 12], ['未定', 13]],{include_blank: '植え付け'} %>
   <%= f.select :harvest_eq, [['１月', 1], ['２月', 2], ['３月', 3],['４月',4], ['５月', 5], ['６月', 6],['７月', 7], ['８月', 8],  ['９月', 9], ['１０月', 10],['１１月', 11], ['１２月', 12], ['未定', 13]],{include_blank: '収穫'} %>
   <%= f.date_field :day_gteq%>

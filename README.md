@@ -5,7 +5,8 @@
 ・rails 6.0.5
 # 就業Termの技術
 ・お気に入り機能  
-・Ajaxを使ったコメント機能
+・コメント機能
+・devise
 # カリキュラム外の技術
 ・geocoder  
 ・ransack

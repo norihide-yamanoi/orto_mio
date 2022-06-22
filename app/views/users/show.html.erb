@@ -1,7 +1,21 @@
+<% if params[:id].nil? || @user.id == current_user.id %>
+  <h1>ようこそ<%= current_user.name %>さん</h1>
+  <p>名前：<%= current_user.name %></p>
+  <p>登録email：<%= current_user.email %></p>
+  <p>アイコン：<%= image_tag current_user.icon.url %></p>
+  <br>
+  <%= link_to 'お気に入り一覧', favorites_path %>
+  <br>
+  アカウントを編集しますか？
+  <%= link_to "はい", edit_user_registration_path %>
+  <br>
+  ログアウトしますか？
+  <%= link_to "はい", destroy_user_session_path, method: :delete %>
 
+<% else %>
   <h2>ここは<%= @user.name %>さんのページです</h2>
   <p>名前：<%= @user.name %></p>
-  <p>登録email：<%= @user.email %></p>
-
-
+  <!-- <p>登録email：<%= @user.email %></p> -->
+  <p>アイコン：<%= image_tag @user.icon.url %></p>
+<% end %><br>
 <%= link_to "編集", edit_user_registration_path %>

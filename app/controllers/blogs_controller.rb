@@ -2,9 +2,19 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blogs = Blog.all
+    if params[:select_event]
+      @select_event = Event.find(params[:event_id])
+      @blogs = @select_event.blogs
+      # @name = @select_event.name
+    else
+      @blogs = Blog.all
+   end
   end
 
+  def index_all
+    @blogs = Blog.all
+  end
+  
   def new
     @blog = Blog.new
   end
@@ -15,7 +25,7 @@ class BlogsController < ApplicationController
       render :new
     else
       if @blog.save
-        redirect_to event_blogs_path, notice: "ブログを投稿しました‼︎"
+        redirect_to event_blogs_path(select_event: :true), notice: "ブログを投稿しました‼︎"
       else
         render :new
       end
@@ -32,7 +42,7 @@ class BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to event_blogs_path, notice: "ブログを編集しました！"
+      redirect_to event_blogs_path(select_event: :true), notice: "ブログを編集しました！"
     else
       render :edit
     end
@@ -40,7 +50,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-    redirect_to event_blogs_path, notice:"ブログを削除しました！"
+    redirect_to event_blogs_path(select_event: :true), notice:"ブログを削除しました！"
   end
 
   def confirm
