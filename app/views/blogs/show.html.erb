@@ -8,7 +8,7 @@
 <h3>コメント一覧</h3>
 <% @comments.each do |c| %>
   <%= c.content %>
-  <% if user_signed_in? %>  #追加
+  <% if user_signed_in? %>
     <% if current_user.id == c.user_id %>
       <%= link_to "編集", edit_event_blog_comment_path(@blog, c) %>
       <%= link_to "削除", event_blog_comment_path(@blog, c), method: :delete %>

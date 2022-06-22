@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @blog.comments.includes(:event,:user)
+    @comments = @blog.comments.includes(:user)
   end
 
   def edit
