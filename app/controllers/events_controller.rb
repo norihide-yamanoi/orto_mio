@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_q
 def index
-  @events = @q.result
+  @events = @q.result.order(created_at: :desc)
 end
 
 def new

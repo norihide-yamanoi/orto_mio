@@ -3,6 +3,7 @@
   <tr>
     <th>タイトル</th>
     <th>内容</th>
+    <th>作者</th>
     <th>写真</th>
   </tr>
 
@@ -10,6 +11,7 @@
   <tr>
     <td><%= blog.title %></td>
     <td><%= blog.content %></td>
+    <td><%= blog.user.name %></td>
     <td><%= image_tag(blog.photo.url) %></td>
   </tr>
 <% end %>

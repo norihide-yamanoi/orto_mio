@@ -3,6 +3,7 @@
   <tr>
     <th>タイトル</th>
     <th>内容</th>
+    <th>作者</th>
     <th>写真</th>
   </tr>
 
@@ -10,9 +11,9 @@
   <tr>
     <td><%= blog.title %></td>
     <td><%= blog.content %></td>
-    <td><%= image_tag(blog.photo.url) %></td>
+    <td><%= link_to blog.user.name,user_path(blog.user)%></td>
+    <td><%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %></td>
 
-     <td><%= link_to '内容を確認する',event_blog_path(blog.event.id,blog.id) %></td>
      <td><%= link_to "ブログを編集する", edit_event_blog_path(blog.event.id,blog.id) %></td>
      <td><%= link_to 'ブログを削除する', event_blog_path(blog.event.id,blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>

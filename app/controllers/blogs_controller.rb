@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   def index
     if params[:select_event]
       @select_event = Event.find(params[:event_id])
-      @blogs = @select_event.blogs
+      @blogs = @select_event.blogs.order(created_at: :desc)
       # @name = @select_event.name
     else
       @blogs = Blog.all
@@ -12,9 +12,9 @@ class BlogsController < ApplicationController
   end
 
   def index_all
-    @blogs = Blog.all
+    @blogs = Blog.all.order(created_at: :desc)
   end
-  
+
   def new
     @blog = Blog.new
   end
