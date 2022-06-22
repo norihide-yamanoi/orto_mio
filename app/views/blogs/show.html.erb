@@ -10,10 +10,10 @@
   <%= c.content %>
   <% if user_signed_in? %>
     <% if current_user.id == c.user_id %>
-      <%= link_to "編集", edit_event_blog_comment_path(@blog, c) %>
-      <%= link_to "削除", event_blog_comment_path(@blog, c), method: :delete %>
+      <%= link_to "編集", edit_event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog) %>
+      <%= link_to "削除", event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog), method: :delete %>
     <% elsif current_user.id == @blog.user_id then %>
-      <%= link_to "削除", event_blog_comment_path(@blog, c), method: :delete %>
+      <%= link_to "削除", event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog), method: :delete %>
     <% end %>
   <% end %>
 <% end %>

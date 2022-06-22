@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   def create
+    @event = Event.find(params[:event_id])
     @blog = Blog.find(params[:blog_id])
     @comment = current_user.comments.build(comment_params)
     if @comment.save
@@ -11,6 +12,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @event = Event.find(params[:event_id])
     @blog = Blog.find(params[:blog_id])
     @comment = Comment.find(params[:id])
   end

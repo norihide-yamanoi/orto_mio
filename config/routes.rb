@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :favorites
   resources :blogs
   devise_for :users, controllers: { registrations: 'users/registrations' }
-  get "users/show" => "users#show"
+  resources :users
 
 
   resources :events do
