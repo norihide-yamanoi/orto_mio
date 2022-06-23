@@ -53,9 +53,11 @@
 <% else %>
   <h2>ここは<%= @user.name %>さんのページです</h2>
   <p>名前：<%= @user.name %></p>
-  <!-- <p>登録email：<%= @user.email %></p> -->
   <p>アイコン：<%= image_tag @user.icon.url %></p>
 
+  <p>
+<%= mail_to @user.email, "#{@user.name}さんに問い合わせをする", :encode => 'hex' %>
+</p>
   <h1><%= @user.name %>さんのイベント一覧</h1>
     <table>
       <tr>
