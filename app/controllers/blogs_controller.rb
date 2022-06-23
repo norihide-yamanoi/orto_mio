@@ -8,11 +8,12 @@ class BlogsController < ApplicationController
       @name = @select_event.name
     else
       @blogs = Blog.all
-   end
+    end
   end
 
   def index_all
-    @blogs = Blog.all.order(created_at: :desc)
+    @q = Blog.ransack(params[:q])
+    @blogs = @q.result.order(created_at: :desc)
   end
 
   def new
