@@ -2,20 +2,92 @@
   <h1>ようこそ<%= current_user.name %>さん</h1>
   <p>名前：<%= current_user.name %></p>
   <p>登録email：<%= current_user.email %></p>
-  <p>アイコン：<%= image_tag current_user.icon.url %></p>
-  <br>
-  <%= link_to 'お気に入り一覧', favorites_path %>
-  <br>
-  アカウントを編集しますか？
-  <%= link_to "はい", edit_user_registration_path %>
-  <br>
-  ログアウトしますか？
-  <%= link_to "はい", destroy_user_session_path, method: :delete %>
+  <p>アイコン：<%= image_tag current_user.icon.url %></p><br>
+
+  <%= link_to 'お気に入り一覧', favorites_path %><br>
+  <%= link_to "アカウントを編集", edit_user_registration_path %><br>
+
+
+<h1><%= current_user.name %>さんのイベント一覧</h1>
+  <table>
+    <tr>
+      <th>名前</th>
+      <th>詳細</th>
+      <th>開催日</th>
+    </tr>
+
+  <% @user.events.each do |event| %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.detail %></td>
+      <td><%= event.day %></td>
+      <td><%= image_tag(event.image.url) %></td>
+      <td><%= link_to "内容を確認する",event_path(event.id) %></td>
+      <td><%= link_to "イベントを編集する", edit_event_path(event.id) %></td>
+      <td><%= link_to 'イベントを削除する', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+    </tr>
+  <% end %>
+  </table>
+
+<h1><%= current_user.name %>さんのブログ一覧</h1>
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <th>内容</th>
+      <th>写真</th>
+    </tr>
+
+  <% @user.blogs.each do |blog| %>
+    <tr>
+      <td><%= blog.title %></td>
+      <td><%= blog.content %></td>
+      <td><%= image_tag(blog.photo.url) %></td>
+      <td><%= link_to "内容を確認する",event_blog_path(blog.event.id, blog.id) %></td>
+      <td><%= link_to "ブログを編集する", edit_event_blog_path(blog.event.id,blog.id) %></td>
+      <td><%= link_to 'ブログを削除する', event_blog_path(blog.event.id,blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
 
 <% else %>
   <h2>ここは<%= @user.name %>さんのページです</h2>
   <p>名前：<%= @user.name %></p>
   <!-- <p>登録email：<%= @user.email %></p> -->
   <p>アイコン：<%= image_tag @user.icon.url %></p>
+
+  <h1><%= @user.name %>さんのイベント一覧</h1>
+    <table>
+      <tr>
+        <th>名前</th>
+        <th>詳細</th>
+        <th>開催日</th>
+      </tr>
+
+    <% @user.events.each do |event| %>
+      <tr>
+        <td><%= event.name %></td>
+        <td><%= event.detail %></td>
+        <td><%= event.day %></td>
+        <td><%= link_to image_tag(event.image.url),event_path(event.id) %></td>
+      </tr>
+    <% end %>
+    </table>
+
+  <h1><%= @user.name %>さんのブログ一覧</h1>
+    <table>
+      <tr>
+        <th>タイトル</th>
+        <th>内容</th>
+        <th>写真</th>
+      </tr>
+
+    <% @user.blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.title %></td>
+        <td><%= blog.content %></td>
+        <td><%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %></td>
+      </tr>
+    <% end %>
+    </table>
 <% end %><br>
-<%= link_to "編集", edit_user_registration_path %>

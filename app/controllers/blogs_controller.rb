@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
     if params[:select_event]
       @select_event = Event.find(params[:event_id])
       @blogs = @select_event.blogs.order(created_at: :desc)
-      # @name = @select_event.name
+      @name = @select_event.name
     else
       @blogs = Blog.all
    end
