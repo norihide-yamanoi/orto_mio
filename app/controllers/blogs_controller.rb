@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_q, only: [:index, :search]
   def index
     if params[:select_event]
       @select_event = Event.find(params[:event_id])
@@ -58,6 +58,10 @@ class BlogsController < ApplicationController
     render :new if @blog.invalid?
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
 
   def  blog_params
@@ -68,4 +72,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
   end
 
+  def set_q
+    @q = Blog.ransack(params[:q])
+  end
 end

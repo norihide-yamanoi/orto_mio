@@ -1,4 +1,12 @@
 <h1><%= @name %>のブログ一覧</h1>
+
+<%= search_form_for @q, url: search_event_blogs_path do |f| %>
+  <%= f.search_field :title_or_content_cont, placeholder: '内容' %>
+  <%= f.search_field :user_name_cont, placeholder: '作者' %>
+  <br>
+  <%= f.submit '検索' %>
+<% end %>
+
 <table>
   <tr>
     <th>タイトル</th>
