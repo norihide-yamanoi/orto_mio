@@ -67,6 +67,12 @@
     <% end %>
 
     <%= yield %>
+
+  <footer class="bg-light text-center text-lg-start">
+  　<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright
+  　</div>
+　</footer>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -79,27 +85,3 @@
     -->
   </body>
 </html>
-
-
-    <% if current_user.try(:admin?) %>
-      <%= link_to "管理画面へ",rails_admin_path %>
-    <% end %>
-
-    <% if user_signed_in? %>
-      <%= link_to "ユーザー画面", user_path(current_user.id) %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
-    <%= link_to "TOP画面へ",top_index_path %>
-    <%= link_to "お問い合わせ",inquiry_path %>
-    <%= link_to "イベント一覧画面", events_path %>
-    <%= link_to "ブログ一覧画面", blogs_index_all_path %>
-
-    <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
-      <% end %>
