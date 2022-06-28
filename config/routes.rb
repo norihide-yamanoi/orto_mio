@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :favorites
   devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :users
-
+  get 'users/:id/profile', to: 'users#show', as: 'user_profile'
   get 'blogs/index_all'
 
   resources :events do

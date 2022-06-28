@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def after_update_path_for(resource)
-      users_show_path(@user.id)
+      user_profile_path(current_user)
     end
 
 

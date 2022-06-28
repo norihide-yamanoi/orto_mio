@@ -1,6 +1,7 @@
 <h1>イベント内容画面</h1>
 
 <% unless @event.user_id == current_user.id %>
+  <%= mail_to @event.user.email, "#{@event.user.name}さんに問い合わせをする", :encode => 'hex' %>
   <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
   <% else %>
@@ -10,7 +11,6 @@
 
 <%= link_to 'このイベントにブログを登録する', new_event_blog_path(@event) %>
 <%= link_to 'このイベントのブログを見る', event_blogs_path(@event, select_event: :true) %>
-<%= mail_to @event.user.email, "#{@event.user.name}さんに問い合わせをする", :encode => 'hex' %>
 
 <p>名前:<%= @event.name %></p>
 <p>開催日:<%= @event.day %></p>
