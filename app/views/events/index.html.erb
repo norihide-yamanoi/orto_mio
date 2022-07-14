@@ -16,23 +16,23 @@
   <%= f.submit '検索' %>
 <% end %>
 
-<table>
-  <tr>
-    <th>名前</th>
-    <th>詳細</th>
-    <th>開催者</th>
-    <th>開催日</th>
-  </tr>
+<div class="container">
+  <div class="row">
+    <% @events.each do |event| %>
+      <div class="col-md-4">
+        <div class="card">
+          <%= link_to image_tag(event.image.url, class: "card-img-top"), event_path(event.id) %>
+          <div class="card-body text-center">
+            <h4 class="card-title"><%=event.name %></h4>
+            <p class="card-text"><%=event.detail %></p>
+            <p class="card-text">開催者：<%= link_to event.user.name,user_path(event.user)%></p>
+            <p class="card-text"><%=event.day %></p>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
 
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.detail %></td>
-    <td><%= link_to event.user.name,user_path(event.user)%></td>
-    <td><%= event.day %></td>
-    <td><%= link_to image_tag(event.image.url),event_path(event.id) %></td>
-  </tr>
-<% end %>
-</table>
 
 <%= link_to '新しくイベントを登録する', new_event_path %>

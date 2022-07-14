@@ -6,13 +6,11 @@
 <p>写真: <%= image_tag @blog.photo.url %></p>
 
 <h3>コメント一覧</h3>
-<table>
-  <thead>
+  <table>
     <tr>
       <th>コメント投稿者</th>
       <th>コメント内容</th>
     </tr>
-  </thead>
   <tbody>
     <% @comments.each do |c| %>
   <tr>

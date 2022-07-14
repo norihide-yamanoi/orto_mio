@@ -1,38 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
     <title>OrtoMio</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if current_user.try(:admin?) %>
-      <%= link_to "管理画面へ",rails_admin_path %>
-    <% end %>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+      <div class="container-fluid">
+        <%= link_to image_tag("logo.png",size: '80x60',class: "navbar-brand"), top_index_path %>
 
-    <% if user_signed_in? %>
-      <%= link_to "ユーザー画面", user_path(current_user.id) %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-    <% end %>
-    <%= link_to "TOP画面へ",top_index_path %>
-    <%= link_to "お問い合わせ",inquiry_path %>
-    <%= link_to "イベント一覧画面", events_path %>
-    <%= link_to "ブログ一覧画面", blogs_index_all_path %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+               <%= link_to "TOP",top_index_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "お問い合わせ",inquiry_path , class: "nav-link" %>
+              </li>
+            <% if current_user.try(:admin?) %>
+              <li class="nav-item">
+                <%= link_to "管理画面へ",rails_admin_path,class: "nav-link" %>
+              </li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "ユーザー画面", user_path(current_user.id),class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path,class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+              <li class="nav-item">
+              <%= link_to "イベント", events_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ブログ", blogs_index_all_path, class: "nav-link" %>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
-      <% end %>
+      <p class="alert alert-notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+    <% end %>
 
-    <%= yield %>
+      <%= yield %>
+
+    <footer class="footer mt-4 py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted">Demo Company &copy; All Right Reserved.</span>
+      </div>
+    </footer>
+
   </body>
 </html>

@@ -9,25 +9,27 @@
 
 
 <h1><%= current_user.name %>さんのイベント一覧</h1>
-  <table>
-    <tr>
-      <th>名前</th>
-      <th>詳細</th>
-      <th>開催日</th>
-    </tr>
 
-  <% @user.events.each do |event| %>
-    <tr>
-      <td><%= event.name %></td>
-      <td><%= event.detail %></td>
-      <td><%= event.day %></td>
-      <td><%= image_tag(event.image.url) %></td>
-      <td><%= link_to "内容を確認する",event_path(event.id) %></td>
-      <td><%= link_to "イベントを編集する", edit_event_path(event.id) %></td>
-      <td><%= link_to 'イベントを削除する', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
-    </tr>
-  <% end %>
-  </table>
+  <div class="container">
+    <div class="row">
+      <% @user.events.each do |event| %>
+        <div class="col-md-4">
+          <div class="card">
+            <%= link_to image_tag(event.image.url, class: "card-img-top"), event_path(event.id) %>
+            <div class="card-body text-center">
+              <h4 class="card-title"><%=event.name %></h4>
+              <p class="card-text"><%=event.detail %></p>
+              <p class="card-text"><%=event.day %></p>
+              <%= link_to "確認",event_path(event.id) %>
+              <%= link_to "編集", edit_event_path(event.id) %>
+              <%= link_to '削除', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+
 
 <h1><%= current_user.name %>さんのブログ一覧</h1>
   <table>
@@ -59,22 +61,25 @@
 <%= mail_to @user.email, "#{@user.name}さんに問い合わせをする", :encode => 'hex' %>
 </p>
   <h1><%= @user.name %>さんのイベント一覧</h1>
-    <table>
-      <tr>
-        <th>名前</th>
-        <th>詳細</th>
-        <th>開催日</th>
-      </tr>
-
-    <% @user.events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.detail %></td>
-        <td><%= event.day %></td>
-        <td><%= link_to image_tag(event.image.url),event_path(event.id) %></td>
-      </tr>
-    <% end %>
-    </table>
+  <div class="container">
+    <div class="row">
+      <% @user.events.each do |event| %>
+        <div class="col-md-4">
+          <div class="card">
+            <%= link_to image_tag(event.image.url, class: "card-img-top"), event_path(event.id) %>
+            <div class="card-body text-center">
+              <h4 class="card-title"><%=event.name %></h4>
+              <p class="card-text"><%=event.detail %></p>
+              <p class="card-text"><%=event.day %></p>
+              <%= link_to "確認",event_path(event.id) %>
+              <%= link_to "編集", edit_event_path(event.id) %>
+              <%= link_to '削除', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
 
   <h1><%= @user.name %>さんのブログ一覧</h1>
     <table>

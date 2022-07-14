@@ -5,6 +5,26 @@
   <br>
   <%= f.submit '検索' %>
 <% end %>
+<div class="container">
+  <div class="row">
+    <% @blogs.each do |blog| %>
+      <div class="card md-6">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <td><%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %></td>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= blog.title %></h5>
+        <p class="card-text"><%=blog.content%></p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>
+</div>
 
 <table>
   <tr>
