@@ -1,5 +1,5 @@
 <h1>イベント一覧</h1>
-
+<%= link_to '新しくイベントを登録する', new_event_path %>
 
 <%= search_form_for @q do |f| %>
   <%= f.search_field :detail_or_remork_or_name_or_address_or_crop_cont, placeholder: '内容'%>
@@ -36,6 +36,3 @@
     <%end%>
   </div>
 </div>
-
-
-<%= link_to '新しくイベントを登録する', new_event_path %>

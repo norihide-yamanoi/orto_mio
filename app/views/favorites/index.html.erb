@@ -1,19 +1,23 @@
 <h1>お気に入りイベント一覧</h1>
 
-<table>
-  <tr>
-    <th>名前</th>
-    <th>内容</th>
-    <th>開催者</th>
-  </tr>
-
-<% @favorites.each do |favorite| %>
-  <tr>
-    <td><%= favorite.event.name%></td>
-    <td><%= favorite.event.detail %></td>
-    <td><%= favorite.event.user.name %></td>
-  </tr>
-<% end %>
-</table>
-
+<div class="container">
+  <div class="row">
+    <% @favorites.each do |favorite| %>
+      <div class="col-md-4 p-1">
+        <div class="card h-100">
+          <%= link_to image_tag(favorite.event.image.url, class: "card-img-top"), event_path(favorite.event.id) %>
+          <div class="card-body text-center">
+            <h4 class="card-title"><%=favorite.event.name %></h4>
+            <p class="card-text"><%=favorite.event.detail %></p>
+            <p class="card-text">開催者：<%= link_to favorite.event.user.name,user_path(favorite.event.user)%></p>
+            <p class="card-text">開催日<%=favorite.event.day %></p>
+          </div>
+          <div class="card-footer text-center">
+            <small class="text-muted">最終更新<%= favorite.event.updated_at.strftime('%Y/%m/%d') %></small>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
 <%= link_to "戻る", :back %>
