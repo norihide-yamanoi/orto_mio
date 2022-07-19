@@ -9,7 +9,7 @@
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
-      <%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %>
+      <%= link_to image_tag(blog.photo.url,size: '275x183'),event_blog_path(blog.event.id, blog.id) %>
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -21,7 +21,6 @@
   </div>
 </div>
 <% end %>
-
 <!-- <div class="container">
   <div class="row">
     <% @blogs.each do |blog| %>

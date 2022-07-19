@@ -19,14 +19,17 @@
 <div class="container">
   <div class="row">
     <% @events.each do |event| %>
-      <div class="col-md-4">
-        <div class="card">
+      <div class="col-md-4 p-1">
+        <div class="card h-100">
           <%= link_to image_tag(event.image.url, class: "card-img-top"), event_path(event.id) %>
           <div class="card-body text-center">
             <h4 class="card-title"><%=event.name %></h4>
             <p class="card-text"><%=event.detail %></p>
             <p class="card-text">開催者：<%= link_to event.user.name,user_path(event.user)%></p>
-            <p class="card-text"><%=event.day %></p>
+            <p class="card-text">開催日<%=event.day %></p>
+          </div>
+          <div class="card-footer text-center">
+            <small class="text-muted">最終更新<%= event.updated_at.strftime('%Y/%m/%d') %></small>
           </div>
         </div>
       </div>

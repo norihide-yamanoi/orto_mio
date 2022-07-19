@@ -1,6 +1,5 @@
 <% if params[:id].nil? || @user.id == current_user.id %>
   <h1>ようこそ<%= current_user.name %>さん</h1>
-  <p>名前：<%= current_user.name %></p>
   <p>登録email：<%= current_user.email %></p>
   <p>アイコン：<%= image_tag current_user.icon.url %></p><br>
 
@@ -13,16 +12,20 @@
   <div class="container">
     <div class="row">
       <% @user.events.each do |event| %>
-        <div class="col-md-4">
-          <div class="card">
+        <div class="col-md-4 p-1">
+          <div class="card h-100">
             <%= link_to image_tag(event.image.url, class: "card-img-top"), event_path(event.id) %>
             <div class="card-body text-center">
               <h4 class="card-title"><%=event.name %></h4>
               <p class="card-text"><%=event.detail %></p>
-              <p class="card-text"><%=event.day %></p>
+              <p class="card-text">開催者：<%= link_to event.user.name,user_path(event.user)%></p>
+              <p class="card-text">開催日<%=event.day %></p>
               <%= link_to "確認",event_path(event.id) %>
               <%= link_to "編集", edit_event_path(event.id) %>
               <%= link_to '削除', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-muted">最終更新<%= event.updated_at.strftime('%Y/%m/%d') %></small>
             </div>
           </div>
         </div>
@@ -30,13 +33,12 @@
     </div>
   </div>
 
-
 <h1><%= current_user.name %>さんのブログ一覧</h1>
 <% @user.blogs.each do |blog| %>
 <div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
-      <%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %>
+      <%= link_to image_tag(blog.photo.url,size: '275x183'),event_blog_path(blog.event.id, blog.id) %>
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -55,23 +57,25 @@
 
 <% else %>
   <h2>ここは<%= @user.name %>さんのページです</h2>
-  <p>名前：<%= @user.name %></p>
   <p>アイコン：<%= image_tag @user.icon.url %></p>
 
-  <p>
-<%= mail_to @user.email, "#{@user.name}さんに問い合わせをする", :encode => 'hex' %>
-</p>
+  <p><%= mail_to @user.email, "#{@user.name}さんに問い合わせをする", :encode => 'hex' %></p>
+  
   <h1><%= @user.name %>さんのイベント一覧</h1>
   <div class="container">
     <div class="row">
       <% @user.events.each do |event| %>
-        <div class="col-md-4">
-          <div class="card">
+        <div class="col-md-4 p-1">
+          <div class="card h-100">
             <%= link_to image_tag(event.image.url, class: "card-img-top"), event_path(event.id) %>
             <div class="card-body text-center">
               <h4 class="card-title"><%=event.name %></h4>
               <p class="card-text"><%=event.detail %></p>
-              <p class="card-text"><%=event.day %></p>
+              <p class="card-text">開催者：<%= link_to event.user.name,user_path(event.user)%></p>
+              <p class="card-text">開催日<%=event.day %></p>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-muted">最終更新<%= event.updated_at.strftime('%Y/%m/%d') %></small>
             </div>
           </div>
         </div>
@@ -84,7 +88,7 @@
     <div class="card mb-3">
       <div class="row g-0">
         <div class="col-md-4">
-          <%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %>
+          <%= link_to image_tag(blog.photo.url,size: '275x183'),event_blog_path(blog.event.id, blog.id) %>
         </div>
         <div class="col-md-8">
           <div class="card-body">
