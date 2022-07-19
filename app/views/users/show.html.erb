@@ -32,24 +32,25 @@
 
 
 <h1><%= current_user.name %>さんのブログ一覧</h1>
-  <table>
-    <tr>
-      <th>タイトル</th>
-      <th>内容</th>
-      <th>写真</th>
-    </tr>
-
-  <% @user.blogs.each do |blog| %>
-    <tr>
-      <td><%= blog.title %></td>
-      <td><%= blog.content %></td>
-      <td><%= image_tag(blog.photo.url) %></td>
-      <td><%= link_to "内容を確認する",event_blog_path(blog.event.id, blog.id) %></td>
-      <td><%= link_to "ブログを編集する", edit_event_blog_path(blog.event.id,blog.id) %></td>
-      <td><%= link_to 'ブログを削除する', event_blog_path(blog.event.id,blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
-    </tr>
-  <% end %>
-  </table>
+<% @user.blogs.each do |blog| %>
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= blog.title %></h5>
+        <p class="card-text"><%=blog.content%></p>
+        <p class="card-text"><%= link_to blog.user.name,user_path(blog.user)%><small class="text-muted">  <%=blog.created_at.strftime('%Y/%m/%d') %></small></p>
+        <%= link_to "内容を確認する",event_blog_path(blog.event.id, blog.id) %>
+        <%= link_to "ブログを編集する", edit_event_blog_path(blog.event.id,blog.id) %>
+        <%= link_to 'ブログを削除する', event_blog_path(blog.event.id,blog.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
 
 
 <% else %>
@@ -71,9 +72,6 @@
               <h4 class="card-title"><%=event.name %></h4>
               <p class="card-text"><%=event.detail %></p>
               <p class="card-text"><%=event.day %></p>
-              <%= link_to "確認",event_path(event.id) %>
-              <%= link_to "編集", edit_event_path(event.id) %>
-              <%= link_to '削除', event_path(event.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
             </div>
           </div>
         </div>
@@ -82,19 +80,20 @@
   </div>
 
   <h1><%= @user.name %>さんのブログ一覧</h1>
-    <table>
-      <tr>
-        <th>タイトル</th>
-        <th>内容</th>
-        <th>写真</th>
-      </tr>
-
-    <% @user.blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.content %></td>
-        <td><%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %></td>
-      </tr>
-    <% end %>
-    </table>
-<% end %><br>
+  <% @user.blogs.each do |blog| %>
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <p class="card-text"><%=blog.content%></p>
+            <p class="card-text"><%= link_to blog.user.name,user_path(blog.user)%><small class="text-muted">  <%=blog.created_at.strftime('%Y/%m/%d') %></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

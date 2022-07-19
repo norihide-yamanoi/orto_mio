@@ -11,7 +11,7 @@
       <th>コメント投稿者</th>
       <th>コメント内容</th>
     </tr>
-  <tbody>
+    
     <% @comments.each do |c| %>
   <tr>
     <td><%= c.user.name %></td>
@@ -23,7 +23,6 @@
       <% elsif current_user.id == @blog.user_id then %>
       <td><%= link_to "削除", event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog), method: :delete %></td>
     </tr>
-  </tbody>
 </table>
     <% end %>
   <% end %>

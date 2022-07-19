@@ -7,20 +7,19 @@
   <%= f.submit '検索' %>
 <% end %>
 
-<table>
-  <tr>
-    <th>タイトル</th>
-    <th>内容</th>
-    <th>作者</th>
-    <th>写真</th>
-  </tr>
-
 <% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.title %></td>
-    <td><%= blog.content %></td>
-    <td><%= link_to blog.user.name,user_path(blog.user)%></td>
-    <td><%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %></td>
-  </tr>
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <%= link_to image_tag(blog.photo.url),event_blog_path(blog.event.id, blog.id) %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= blog.title %></h5>
+        <p class="card-text"><%=blog.content%></p>
+        <p class="card-text"><%= link_to blog.user.name,user_path(blog.user)%><small class="text-muted">  <%=blog.created_at.strftime('%Y/%m/%d') %></small></p>
+      </div>
+    </div>
+  </div>
+</div>
 <% end %>
-</table>
