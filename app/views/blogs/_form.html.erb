@@ -1,37 +1,36 @@
 <div class="main">
-  <%= form_with(model: @blog, local: true ,url: choose_new_or_edit_blog  ) do |form| %>
-  <% if @blog.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
-      <ul>
+  <%= form_with(model: [:event,@blog] ,local: true ,url: choose_new_or_edit_blog ) do |form| %>
+    <% if @blog.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @blog.errors.count %>件のエラーがあります。</h2>
+        <ul>
+          <% @blog.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <% @blog.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="blog_title">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+    <div class="blog_content">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
+    <div class="blog_photo">
+      <%= form.label :photo %>
+      <%= image_tag(@blog.photo.url) if @blog.photo && @blog.photo.url %><br>
+      <%= form.file_field :photo %>
+      <%= form.hidden_field :photo_cache %>
+    </div>
+      <%= form.hidden_field :event_id %>
+    <div class="text-center">
+      <%= form.submit class: 'btn btn-primary' %>
     </div>
   <% end %>
-
-  <div class="blog_title">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="text-center">
+    <%= link_to "戻る", :back %>
   </div>
-  <div class="blog_content">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-  <div class="blog_photo">
-    <%= form.label :photo %>
-    <%= image_tag(@blog.photo.url) if @blog.photo && @blog.photo.url %><br>
-    <%= form.file_field :photo %>
-    <%= form.hidden_field :photo_cache %>
-    </div>
-    <%= form.hidden_field :event_id %>
-    <div class="text-center">
-  <%= form.submit class: 'btn btn-primary' %>
-  </div>
-<% end %>
-<div class="text-center">
-<%= link_to "戻る", :back %>
-</div>
 </div>
