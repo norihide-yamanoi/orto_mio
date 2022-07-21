@@ -1,16 +1,21 @@
-<h3>以下の内容で、送信する。</h3>
-
+<div class="text-center">
+  <h3>以下の内容で、送信する。</h3>
+</div>
 <%= form_with(model: @blog, url: event_blogs_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :photo %>
   <%= form.hidden_field :photo_cache %>
   <%= form.hidden_field :event_id %>
+<div class="main">
   <p>タイトル:<%= @blog.title %></p>
   <p>内容:<%= @blog.content %></p>
-
+</div>
+<div class="text-center">
   <%= image_tag(@blog.photo.url) if @blog.photo && @blog.photo.url %>
-
+</div>
+<div class="text-center">
   <%= form.submit  "登録する" %>
   <%= form.submit "戻る", name: 'back' %>
+</div>  
 <% end %>

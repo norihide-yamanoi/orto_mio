@@ -1,3 +1,4 @@
+<div class="main">
 <%= form_with(model: @event, local: true ,url: choose_new_or_edit  ) do |form| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -12,46 +13,50 @@
   <% end %>
 
   <div class="event_name">
-    <%= form.label :name %>
+    <%= form.label :イベント名 %>
     <%= form.text_field :name %>
   </div>
   <div class="event_day">
-    <%= form.label :day %>
+    <%= form.label :開催日 %>
     <%= form.date_field :day %>
   </div>
   <div class="event_address">
-    <%= form.label :address %>
+    <%= form.label :住所 %>
     <%= form.text_field :address, autofocus: true  %>
   </div>
   <div class="event_detail">
-    <%= form.label :detail %>
+    <%= form.label :内容 %>
     <%= form.text_area :detail %>
   </div>
   <div class="event_planting">
-    <%= form.label :planting %>
+    <%= form.label :植え付け %>
     <%= form.select :planting, Event.plantings.keys.to_a, { include_blank:'未選択可能'} %>
   </div>
   <div class="event_harvest">
-    <%= form.label :harvest %>
+    <%= form.label :収穫 %>
     <%= form.select :harvest, Event.harvests.keys.to_a, { include_blank:'未選択可能'} %>
   </div>
   <div class="event_crop">
-    <%= form.label :crop %>
+    <%= form.label :作物 %>
     <%= form.text_field :crop %>
   </div>
   <div class="event_tag">
     <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
   </div>
   <div class="event_remork">
-    <%= form.label :remork %>
+    <%= form.label :備考 %>
     <%= form.text_area :remork %>
   </div>
   <div class="event_image">
-    <%= form.label :image %>
+    <%= form.label :イメージ %>
     <%= form.file_field :image %>
     <%= form.hidden_field :image_cache %>
   </div>
-  <%= form.submit %>
+  <div class="text-center">
+    <%= form.submit class: 'btn btn-primary'%>
+  </div>
 <% end %>
-
+<div class="text-center">
 <%= link_to "戻る", :back %>
+</div>
+</div>

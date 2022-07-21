@@ -1,6 +1,6 @@
 <%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
 
-<div class="page-header text-center">
+  <div class="page-header text-center">
     <h1>お問い合わせ</h1>
   </div>
 
@@ -14,7 +14,6 @@
       </ul>
     </div>
   <% end %>
-  <!-- <div class="example"> -->
   <table class="table">
     <tr>
       <th>名前<span class="text-danger">（必須）</span></th>
@@ -29,10 +28,6 @@
       <td><%= f.text_area :message, size: "40x10" %></td>
     </tr>
   </table>
-<!-- </div> -->
-
-
-
   <div class="text-center">
   <%= f.submit '確認', class: 'btn btn-primary' %>
   </div>

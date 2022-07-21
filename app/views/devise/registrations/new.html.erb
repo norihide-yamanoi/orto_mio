@@ -1,4 +1,4 @@
-<div class="center-block">
+<div class="main">
 <h2><%= t('.sign_up') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -28,7 +28,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :icon %>
+    <%= f.label :icon %><br />
     <%= f.file_field :icon %>
   </div>
 
@@ -37,4 +37,3 @@
   </div>
 <% end %>
 </div>
-<%= render "devise/shared/links" %>

@@ -1,3 +1,4 @@
+<div class="main">
 <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -14,7 +15,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :icon %>
+    <%= f.label :icon %><br />
     <%= image_tag @user.icon.url %>
     <%= f.file_field :icon %>
   </div>
@@ -23,5 +24,4 @@
     <%= f.submit t('.update') %>
   </div>
 <% end %>
-
-<%= link_to t('devise.shared.links.back'), :back %>
+</div>

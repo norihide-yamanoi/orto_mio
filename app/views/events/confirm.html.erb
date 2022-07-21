@@ -1,5 +1,6 @@
-<h3>以下の内容で、送信する。</h3>
-
+<div class="text-center">
+  <h3>以下の内容で、送信する。</h3>
+</div>
 <%= form_with(model: @event, url: events_path, local: true) do |form| %>
   <%= form.hidden_field :name %>
   <%= form.hidden_field :detail %>
@@ -16,6 +17,7 @@
     <%= form.hidden_field :tag_ids, multiple: true, value: tag_ids %>
   <% end %>
 
+  <div class="main">
 
   <p>名前:<%= @event.name %></p>
   <p>開催日:<%= @event.day %></p>
@@ -28,8 +30,12 @@
                 <%= tag.name %>
               <% end %></p>
   <p>備考:<%= @event.remork %></p>
+  </div>
+  <div class="text-center">
   <%= image_tag(@event.image.url) if @event.image && @event.image.url %>
-
+  </div>
+  <div class="text-center">
   <%= form.submit  "登録する" %>
   <%= form.submit "戻る", name: 'back' %>
+  </div>
 <% end %>
