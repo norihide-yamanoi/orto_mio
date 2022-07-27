@@ -1,12 +1,11 @@
-<%= form_with model: [@event, @blog, @comment] do |f|%>
-
-  <div class="field">
-    <%= f.label :content, "コメント編集" %>
-    <%= f.text_field :content %>
-  </div>
-
-  <div class="submit">
-    <%= f.submit "送信"%>
-  </div>
-
-<% end %>
+<div class="main">
+  <%= form_with model: [@event, @blog, @comment] do |f|%>
+    <div class="field">
+      <%= f.label :content, "コメント編集" %>
+      <%= f.text_field :content %>
+    </div>
+    <div class="submit">
+      <%= f.submit "送信"%>
+    </div>
+  <% end %>
+</div>

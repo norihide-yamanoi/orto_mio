@@ -1,38 +1,44 @@
-<h1>ブログ内容画面</h1>
-
-<p>タイトル:<%= @blog.title %></p>
-<p>内容:<%= @blog.content %></p>
-<p>作者:<%= @blog.user.name %></p>
-<p>写真: <%= image_tag @blog.photo.url %></p>
-
-<h3>コメント一覧</h3>
-  <table>
-    <tr>
-      <th>コメント投稿者</th>
-      <th>コメント内容</th>
-    </tr>
-
+<div class="text-center">
+  <h1>ブログ内容画面</h1>
+</div>
+<div class="main">
+  <p>タイトル:<%= @blog.title %></p>
+  <p>内容:<%= @blog.content %></p>
+  <p>作者:<%= @blog.user.name %></p>
+  <p>写真: <%= image_tag @blog.photo.url %></p>
+</div>
+<div class="text-center">
+  <h3>コメント一覧</h3>
+    <table class="table">
+      <tr>
+        <th>投稿者</th>
+        <th>内容</th>
+      </tr>
     <% @comments.each do |c| %>
-  <tr>
-    <td><%= c.user.name %></td>
-    <td><%= c.content %></td>
+      <tr>
+        <td><%= c.user.name %></td>
+        <td><%= c.content %></td>
+        <% if user_signed_in? %>
+          <% if current_user.id == c.user_id %>
+            <td><%= link_to "編集", edit_event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog) %></td>
+            <td><%= link_to "削除", event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog), method: :delete %></td>
+          <% elsif current_user.id == @blog.user_id then %>
+            <td><%= link_to "削除", event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog), method: :delete %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="text-center">
+
   <% if user_signed_in? %>
-    <% if current_user.id == c.user_id %>
-      <td><%= link_to "編集", edit_event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog) %></td>
-      <td><%= link_to "削除", event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog), method: :delete %></td>
-      <% elsif current_user.id == @blog.user_id then %>
-      <td><%= link_to "削除", event_blog_comment_path(c, event_id: params[:event_id],blog_id: @blog), method: :delete %></td>
-    </tr>
-</table>
+    <%= form_with model: [@blog.event, @blog, @comment] do |f| %>
+      <%= f.text_area :content, placeholder: "コメントする" %>
+      <%= f.submit "登録" %>
     <% end %>
   <% end %>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= form_with model: [@blog.event, @blog, @comment] do |f| %>
-    <%= f.text_area :content, placeholder: "コメントする" %>
-    <%= f.submit "登録" %>
-  <% end %>
-<% end %>
 
 <%= link_to "一覧画面にもどる", :back %>
+</div>
